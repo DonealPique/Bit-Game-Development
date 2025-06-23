@@ -24,13 +24,13 @@ public class UIManager : MonoBehaviour
         gm = GameManager.Instance;
         gm.onGameOver.AddListener(ActivateGameOverUI);
         gm.onVictory.AddListener(ActivateVictoryUI);
-    }
+    } // Initializes the UIManager, setting up listeners for game over and victory events from GameManager.
 
     private void ActivateVictoryUI()
     {
         victoryPanel.SetActive(true);
         scoreUI.gameObject.SetActive(false);
-    }
+    } // Activates the victory UI when the game is won, hiding the score UI.
 
     public void VictoryRestartHandler()
     {
@@ -38,11 +38,11 @@ public class UIManager : MonoBehaviour
         victoryPanel.SetActive(false);
         gm.StartGame();
         scoreUI.gameObject.SetActive(true);
-    }
+    } // Handles the restart button click in the victory panel, hiding the victory UI and starting a new game.
     public void PlayButtonHandler()
     {
         gm.StartGame();
-    }
+    } // Handles the play button click, starting the game by calling the StartGame method on GameManager.
 
     public void ActivateGameOverUI()
     {

@@ -35,7 +35,7 @@ public class Spawner : MonoBehaviour
             CalculateFactors();
             SpawnLoop();
         }
-    }
+    } // Updates the time alive and calculates the spawn time and speed of obstacles, then calls the spawn loop to handle obstacle spawning.
 
     private void SpawnLoop()
     {
@@ -46,14 +46,14 @@ public class Spawner : MonoBehaviour
             Spawn();
             timeUntilObstacleSpawn = 0f;
         }
-    }
+    } // Handles the spawning of obstacles at regular intervals, adjusting the spawn time based on how long the game has been running.
 
     private void ResetFactors()
     {
         timeAlive = 1f;
         _obstacleSpawnTime = obstacleSpawnTime;
         _obstacleSpeed = obstacleSpeed;
-    }
+    } // Resets the time alive and obstacle factors when the game starts or restarts.
     private void ClearObstacles()
     {
         foreach (Transform child in obstacleParent)
@@ -65,7 +65,7 @@ public class Spawner : MonoBehaviour
     {
         _obstacleSpawnTime = obstacleSpawnTime / Mathf.Pow(timeAlive, obstacleSpawnTimeFactor);
         _obstacleSpeed = obstacleSpeed * Mathf.Pow(timeAlive, obstacleSpeedFactor);
-    }
+    } // Calculates the spawn time and speed of obstacles based on how long the game has been running, adjusted by specified factors.
 
     private void Spawn()
     {

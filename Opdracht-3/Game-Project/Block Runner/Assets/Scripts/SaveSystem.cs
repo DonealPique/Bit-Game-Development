@@ -5,7 +5,7 @@ using UnityEngine;
 public static class SaveSystem
 {
     public static readonly string SAVE_FOLDER = Application.persistentDataPath + "/saves/";
-    public static readonly string FILE_EXT = ".json";
+    public static readonly string FILE_EXT = ".json"; // The folder where save files will be stored and the file extension for saved data.
 
 
     public static void Save(string fileName, string dataToSave)
@@ -17,7 +17,7 @@ public static class SaveSystem
 
         string filePath = SAVE_FOLDER + fileName + FILE_EXT;
         File.WriteAllText(SAVE_FOLDER + fileName + FILE_EXT, dataToSave);
-    }
+    } // Saves data to a file with the specified file name and data content.
 
     public static string Load(string fileName)
     {
@@ -31,6 +31,6 @@ public static class SaveSystem
         {
             return null;
         }
-    }
+    }// Loads data from a file with the specified file name.
 }
 // this script handles saving data to a file in Unity, specifically for saving game state or settings.

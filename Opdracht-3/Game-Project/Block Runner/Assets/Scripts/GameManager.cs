@@ -87,7 +87,7 @@ public class GameManager : MonoBehaviour
     public string PrettyHighscore()
     {
         return Mathf.RoundToInt(Data.highscore).ToString();
-    }
+    } // PrettyScore returns the current score as a rounded integer string, and PrettyHighscore returns the high score in the same format.
 
 }
 
