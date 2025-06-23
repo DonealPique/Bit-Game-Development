@@ -29,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
         // 2) On initial button-down & grounded: start jump
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
+            AudioManager.I.PlayJump(); // Play jump sound
             isJumping = true;
             jumpTimer = 0f;
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);

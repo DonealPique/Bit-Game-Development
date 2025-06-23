@@ -14,13 +14,31 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI gameOverHighScoreUI; // UI element to display high score
     [SerializeField] private TextMeshProUGUI gameOverScoreUI; // UI element to display current score
 
+      [Header("Victory UI")]
+    [SerializeField] private GameObject victoryPanel;
+    [SerializeField] private Button victoryRestartButton;
+
     GameManager gm;
     private void Start()
-    {
+     {
         gm = GameManager.Instance;
         gm.onGameOver.AddListener(ActivateGameOverUI);
+        gm.onVictory.AddListener(ActivateVictoryUI);
     }
 
+    private void ActivateVictoryUI()
+    {
+        victoryPanel.SetActive(true);
+        scoreUI.gameObject.SetActive(false);
+    }
+
+    public void VictoryRestartHandler()
+    {
+
+        victoryPanel.SetActive(false);
+        gm.StartGame();
+        scoreUI.gameObject.SetActive(true);
+    }
     public void PlayButtonHandler()
     {
         gm.StartGame();

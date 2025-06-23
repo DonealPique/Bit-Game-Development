@@ -39,12 +39,27 @@ public class GameManager : MonoBehaviour
         }
     }
 
+      [Header("Victory")]
+    public float victoryScore = 10f;           // how many points to win
+    public UnityEvent onVictory = new UnityEvent();
+
     private void Update()
-    {
+   {
         if (isPlaying)
         {
-            currentScore += Time.deltaTime; // Increment score over time
+            currentScore += Time.deltaTime;
+            if (currentScore >= victoryScore)
+            {
+                WinGame();
+                AudioManager.I.PlayVictory(); // Play victory sound
+            }
         }
+    }
+
+    private void WinGame()
+    {
+        isPlaying = false;          // stop the gameplay loop
+        onVictory.Invoke();         // fire your victory event
     }
 
     public void StartGame()

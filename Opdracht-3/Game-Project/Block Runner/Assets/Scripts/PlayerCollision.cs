@@ -14,11 +14,21 @@ public class PlayerCollision : MonoBehaviour
     {
         gameObject.SetActive(true); // Activates the player when the game starts
     }
+
+    [SerializeField] private GameObject explosionPrefab;
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.transform.tag == "Obstacles")
         {
-            gameObject.SetActive(false);
+            // If the player collides with an obstacle, play death sound and game over sound:
+            AudioManager.I.PlayExplosion();
+            AudioManager.I.PlayGameOver();
+            // Spawns the explosion effect at the contact point:
+            Vector3 spawnPos = other.contacts[0].point;
+            Instantiate(explosionPrefab, spawnPos, Quaternion.identity);
+
+            gameObject.SetActive(false); // Deactivates the player GameObject
+
             GameManager.Instance.GameOver(); // Calls the GameOver method from GameManager to handle game state
         }
     }
